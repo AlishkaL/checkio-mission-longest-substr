@@ -1,0 +1,140 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        I have no idea how to start solving this mission.
+    </div>
+    <div class="answer">
+        <p>
+            Catch an idea 💡! Store the current start of the substring and longest length in variables. Create a dictionary to store the latest index of every character. Iterate over the given string, update start position if necessary (next index after the previous occurrence of the current character) and calculate the length of unique characters.
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Ok, what should I start from?
+    </div>
+    <div class="answer">
+        <p>
+            Declare a variables for start of the substring, longest length and a dictionary for characters.
+        </p>
+        <pre class="brush: python">
+start = res = 0
+chars = {}
+        </pre>
+        <p>
+            Iterate over the indexes and characters of the given string with <a target="_blank" href="https://www.w3schools.com/python/ref_func_enumerate.asp">enumerate()</a> function.
+        </p>
+        <pre class="brush: python">
+for ind, char in enumerate(s):
+    ...
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        What to do next?
+    </div>
+    <div class="answer">
+        <p>
+            First of all, you need to check if the current character is present in the dictionary (was already met before at the given string).
+        </p>
+        <pre class="brush: python">
+if char in chars:
+    ...
+        </pre>
+        <p>
+            If so, you need to update your <b class="code">start</b> position to be maximum of the current value and index right after that previous occurrence of the current char.
+        </p>
+        <pre class="brush: python">
+start = max(start, chars[char] + 1)
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        I still need a hint.
+    </div>
+    <div class="answer">
+        <p>
+            Now you need to set (update) the latest index of the current character at the dictionary.
+        </p>
+        <pre class="brush: python">
+chars[char] = ind
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        How to count the current length of unique substring?
+    </div>
+    <div class="answer">
+        <p>
+            Yes, you have the stored value <b class="code">res</b> and you have the current index and the start value (the start of substring with unique characters). Find the difference of index and start and update <b class="code">res</b> with maximum value.
+        </p>
+        <pre class="brush: python">
+res = max(res, ind - start + 1)
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        So, how my final solution should look like?
+    </div>
+    <div class="answer">
+        <p>
+            You just need to join all previous hints, return the final result and wrap your code into function expression. Using type hints for input and output data are highly recommended.
+        </p>
+        <p>Here is the whole solution:</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def longest_substr(s: str) -> int:
+
+    start = res = 0
+    chars = {}
+    for ind, char in enumerate(s):
+        if char in chars:
+            start = max(start, chars[char] + 1)
+        chars[char] = ind
+        res = max(res, ind - start + 1)
+
+    return res
+        </pre>
+        </div>
+        <p>Click <b>Best Solutions</b> at mission menu and see a lot of other interesting solutions!</p>
+    </div>
+</div>
+<!-- <div class="question-answer">
+    <div class="question">
+        Show me more solutions!<br />
+        'Cause I wanna be a real 🥇 Python Ninnjaa!
+    </div>
+    <div class="answer">
+        <p>Sure, grab it!</p>
+        <p>
+            
+        </p>
+        <div class="spoiler">
+        <pre class="brush: python">
+
+        </pre>
+        </div>
+        <p>
+            
+        </p>
+        <div class="spoiler">
+        <pre class="brush: python">
+
+        </pre>
+        </div>
+        <p>Click <b>Best Solutions</b> at mission menu and see a lot of other interesting solutions!</p>
+    </div>
+</div> -->
+<div class="question-answer">
+    <div class="question">
+        Thanks! I know and understand more now! Everything works fine!
+    </div>
+    <div class="answer">
+        Glad to hear it 👍!
+    </div>
+</div>
+</body>
