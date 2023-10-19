@@ -1,0 +1,154 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        Je n'ai aucune idée de la manière de commencer à résoudre cette mission.
+    </div>
+    <div class="answer">
+        <p>
+            Attrapez une idée 💡! Stockez le début actuel de la sous-chaîne et la longueur la plus longue dans des variables. Créez une carte pour stocker le dernier indice de chaque caractère. Itérer sur la chaîne donnée, mettre à jour la position de départ si nécessaire (l'index suivant l'occurrence précédente du caractère actuel) et calculer la longueur des caractères uniques.
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Ok, par quoi dois-je commencer?
+    </div>
+    <div class="answer">
+        <p>
+            Déclarez une variable pour le début de la sous-chaîne, la longueur la plus longue et une carte pour les caractères.
+        </p>
+        <pre class="brush: javascript">
+let start = 0, maxLength = 0;
+const charMap = new Map();
+        </pre>
+        <p>
+            Interrogez les index de la chaîne donnée à l'aide de la boucle <a target="_blank" href="https://www.w3schools.com/js/js_loop_for.asp">for</a>.
+        </p>
+        <pre class="brush: javascript">
+for (let end = 0; end < s.length; end++) {
+    ...
+}
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Que faire ensuite?
+    </div>
+    <div class="answer">
+        <p>
+            Tout d'abord, vous devez vérifier si le caractère actuel est présent dans la carte (s'il a déjà été rencontré auparavant à la chaîne de caractères donnée).
+        </p>
+        <pre class="brush: javascript">
+if (charMap.has(s[end])) {
+    ...
+}
+        </pre>
+        <p>
+            Si c'est le cas, vous devez mettre à jour votre position <b class="code">start</b> pour qu'elle corresponde au maximum de la valeur actuelle et de l'index juste après l'occurrence précédente du caractère courant.
+        </p>
+        <pre class="brush: javascript">
+start = Math.max(start, charMap.get(s[end]) + 1);
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        J'ai encore besoin d'un indice.
+    </div>
+    <div class="answer">
+        <p>
+            Vous devez maintenant définir (mettre à jour) le dernier index du personnage actuel sur la carte.
+        </p>
+        <pre class="brush: javascript">
+charMap.set(s[end], end);
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Comment compter la longueur actuelle d'une sous-chaîne unique?
+    </div>
+    <div class="answer">
+        <p>
+            Oui, vous avez la valeur stockée <b class="code">maxLength</b> et vous avez l'index actuel et la valeur de départ (le début de la sous-chaîne avec des caractères uniques). Trouvez la différence entre l'index et la valeur de départ et mettez à jour <b class="code">maxLength</b> avec la valeur maximale.
+        </p>
+        <pre class="brush: javascript">
+maxLength = Math.max(maxLength, end - start + 1);
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Alors, à quoi devrait ressembler ma solution finale?
+    </div>
+    <div class="answer">
+        <p>
+            Il vous suffit de joindre tous les indices précédents, de renvoyer le résultat final et d'envelopper votre code dans une expression de fonction. Il est fortement recommandé d'utiliser des indications de type pour les données d'entrée et de sortie.
+        </p>
+        <p>Voici la solution complète:</p>
+        <div class="spoiler">
+        <pre class="brush: javascript">
+function longestSubstr(s: string): number {
+
+    let start = 0, maxLength = 0;
+    const charMap = new Map();
+
+    for (let end = 0; end < s.length; end++) {
+        if (charMap.has(s[end])) {
+            start = Math.max(start, charMap.get(s[end]) + 1);
+        }
+        charMap.set(s[end], end);
+        maxLength = Math.max(maxLength, end - start + 1);
+    }
+    return maxLength;
+}
+        </pre>
+        </div>
+        <p>Cliquez sur <b>Best Solutions</b> dans le menu mission et découvrez de nombreuses autres solutions intéressantes!</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Montrez-moi d'autres solutions!<br />
+        parce que je veux être un vrai 🥇 Javascript Hero!
+    </div>
+    <div class="answer">
+        <p>Bien sûr, prenez-le!</p>
+        <p>
+            Stocker les caractères uniques dans un ensemble, déplacer l'index de départ si un caractère se répète, déplacer l'index de gauche sinon.
+        </p>
+        <div class="spoiler">
+        <pre class="brush: javascript">
+function longestSubstr(s: string): number {
+
+    const charSet = new Set();
+    let left = 0, right = 0, maxLength = 0;
+
+    while (right < s.length) {
+        if (!charSet.has(s[right])) {
+            charSet.add(s[right]);
+            maxLength = Math.max(maxLength, right - left + 1);
+            right++;
+        } else {
+            charSet.delete(s[left]);
+            left++;
+        }
+    }
+
+    return maxLength;
+}
+        </pre>
+        </div>
+        <p>Cliquez sur <b>Best Solutions</b> dans le menu mission et découvrez de nombreuses autres solutions intéressantes!</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Merci beaucoup! Je comprends mieux maintenant! Tout fonctionne bien!
+    </div>
+    <div class="answer">
+        Heureux de l'apprendre 👍!
+    </div>
+</div>
+</body>
