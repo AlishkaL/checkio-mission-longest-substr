@@ -1,0 +1,154 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        我不知道如何开始解决这个任务。
+    </div>
+    <div class="answer">
+        <p>
+            给你个主意💡！在变量中存储子串的当前起始位置和最长长度。创建一个映射，存储每个字符的最新索引。遍历给定字符串，必要时更新起始位置（当前字符上一次出现后的下一个索引），并计算唯一字符的长度。
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        好吧，我应该从哪里开始？
+    </div>
+    <div class="answer">
+        <p>
+            为子串的起点、最长长度和字符映射声明一个变量。
+        </p>
+        <pre class="brush: javascript">
+let start = 0, maxLength = 0;
+const charMap = new Map();
+        </pre>
+        <p>
+            使用<a target="_blank" href="https://www.w3schools.com/js/js_loop_for.asp">for</a> 循环遍历给定字符串的索引。
+        </p>
+        <pre class="brush: javascript">
+for (let end = 0; end < s.length; end++) {
+    ...
+}
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        下一步做什么？
+    </div>
+    <div class="answer">
+        <p>
+            首先，您需要检查当前字符是否存在于地图中（在给定的字符串处已经出现过）。
+        </p>
+        <pre class="brush: javascript">
+if (charMap.has(s[end])) {
+    ...
+}
+        </pre>
+        <p>
+            如果是，则需要更新<b class="code">start</b> 位置，使其成为当前值和索引的最大值，并紧跟在当前字符的前一次出现之后。
+        </p>
+        <pre class="brush: javascript">
+start = Math.max(start, charMap.get(s[end]) + 1);
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        我还需要提示。
+    </div>
+    <div class="answer">
+        <p>
+            现在，您需要在地图上设置（更新）当前角色的最新索引。
+        </p>
+        <pre class="brush: javascript">
+charMap.set(s[end], end);
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        如何计算唯一子串的当前长度？
+    </div>
+    <div class="answer">
+        <p>
+            是的，您有存储值<b class="code">maxLength</b> 以及当前索引和起始值（具有唯一字符的子串的起始值）。找出索引和起始值的差值，然后用最大值更新<b class="code">maxLength</b> 。
+        </p>
+        <pre class="brush: javascript">
+maxLength = Math.max(maxLength, end - start + 1);
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        那么，我的最终解决方案应该是怎样的呢？
+    </div>
+    <div class="answer">
+        <p>
+            您只需将之前的所有提示连接起来，返回最终结果，并将代码封装成函数表达式。强烈建议对输入和输出数据使用类型提示。
+        </p>
+        <p>下面是整个解决方案：</p>
+        <div class="spoiler">
+        <pre class="brush: javascript">
+function longestSubstr(s: string): number {
+
+    let start = 0, maxLength = 0;
+    const charMap = new Map();
+
+    for (let end = 0; end < s.length; end++) {
+        if (charMap.has(s[end])) {
+            start = Math.max(start, charMap.get(s[end]) + 1);
+        }
+        charMap.set(s[end], end);
+        maxLength = Math.max(maxLength, end - start + 1);
+    }
+    return maxLength;
+}
+        </pre>
+        </div>
+        <p>点击任务菜单<b>Best Solutions</b> ，查看更多有趣的解决方案！</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        向我展示更多解决方案！<br />
+        因为我想成为真正的 🥇 Javascript 英雄！
+    </div>
+    <div class="answer">
+        <p>当然，抓住它！</p>
+        <p>
+            将唯一字符存储在一个集合中，如果某个字符重复，则移动起始索引，否则移动左索引。
+        </p>
+        <div class="spoiler">
+        <pre class="brush: javascript">
+function longestSubstr(s: string): number {
+
+    const charSet = new Set();
+    let left = 0, right = 0, maxLength = 0;
+
+    while (right < s.length) {
+        if (!charSet.has(s[right])) {
+            charSet.add(s[right]);
+            maxLength = Math.max(maxLength, right - left + 1);
+            right++;
+        } else {
+            charSet.delete(s[left]);
+            left++;
+        }
+    }
+
+    return maxLength;
+}
+        </pre>
+        </div>
+        <p>点击任务菜单<b>Best Solutions</b> ，查看更多有趣的解决方案！</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        谢谢！我现在知道并理解得更多了！一切正常！
+    </div>
+    <div class="answer">
+        很高兴听到这个消息 👍！
+    </div>
+</div>
+</body>
