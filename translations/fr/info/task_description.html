@@ -1,0 +1,44 @@
+<!-- Describe task in general -->
+
+<p>
+    Étant donné une chaîne de caractères, trouvez la longueur de la sous-chaîne la plus longue sans répétition de caractères.  
+</p>
+
+<p style="text-align: center;">
+    <img  title="example" src="{{MEDIA}}longest-unique.png" alt="example" style="max-height: 300px"/>
+</p>
+
+<!-- Explain input and output values -->
+<p>
+   <strong>Entrée:</strong> Chaîne <span>(str{% if is_js %}ing{% endif %})</span>.
+</p>
+
+<p>
+   <strong>Sortie:</strong> Entier <span>({% if is_js %}number{% else %}int{% endif %})</span>.
+</p>
+
+<p>
+    <strong>Exemples:</strong>
+</p>
+
+<pre class="brush: {% if is_js %}javascript{% else %}python{% endif %}">{{init_code_tmpl}}</pre>
+
+<!-- Here you can explain how it can be used in development -->
+<!-- The section is optional -->
+<p class="for_info_only">
+    <strong>Comment il est utilisé:</strong>
+    <ul>
+        <li><i>validation des données pour les mots de passe afin de garantir l'inclusion d'une séquence suffisamment longue de caractères non répétés;</i></li>
+        <li><i>l'analyse de textes, en particulier pour la cryptographie et les schémas de codage;</i></li>
+        <li><i>identification de motifs uniques dans une séquence.</i></li>
+    </ul>
+</p>
+
+<!-- Here you can explain some constraints for input-->
+<!-- The section is optional -->
+<!-- <p>
+    <strong>Preconditions:</strong>
+    <ul>
+    <li><i>both given ints should be between -1000 and 1000</i></li>
+    </ul>
+</p> -->
