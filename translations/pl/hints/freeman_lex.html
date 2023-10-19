@@ -1,0 +1,140 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        Nie mam pojęcia, jak zacząć rozwiązywać tę misję.
+    </div>
+    <div class="answer">
+        <p>
+            Proszę złapać pomysł 💡! Proszę przechowywać aktualny początek podciągu i najdłuższą długość w zmiennych. Proszę utworzyć słownik do przechowywania ostatniego indeksu każdego znaku. Iteracja po podanym ciągu, aktualizacja pozycji początkowej w razie potrzeby (następny indeks po poprzednim wystąpieniu bieżącego znaku) i obliczenie długości unikalnych znaków.
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Ok, od czego powinienem zacząć?
+    </div>
+    <div class="answer">
+        <p>
+            Proszę zadeklarować zmienne dla początku podciągu, najdłuższej długości i słownik dla znaków.
+        </p>
+        <pre class="brush: python">
+start = res = 0
+chars = {}
+        </pre>
+        <p>
+            Iterować po indeksach i znakach podanego ciągu za pomocą funkcji <a target="_blank" href="https://www.w3schools.com/python/ref_func_enumerate.asp">enumerate()</a>.
+        </p>
+        <pre class="brush: python">
+for ind, char in enumerate(s):
+    ...
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Co robić dalej?
+    </div>
+    <div class="answer">
+        <p>
+            Przede wszystkim należy sprawdzić, czy bieżący znak jest obecny w słowniku (czy został już wcześniej napotkany w danym ciągu znaków).
+        </p>
+        <pre class="brush: python">
+if char in chars:
+    ...
+        </pre>
+        <p>
+            Jeśli tak, należy zaktualizować pozycję <b class="code">start</b> tak, aby była maksymalną bieżącą wartością i indeksem zaraz po poprzednim wystąpieniu bieżącego znaku.
+        </p>
+        <pre class="brush: python">
+start = max(start, chars[char] + 1)
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Nadal potrzebuję podpowiedzi.
+    </div>
+    <div class="answer">
+        <p>
+            Teraz musi Pan ustawić (zaktualizować) najnowszy indeks bieżącego znaku w słowniku.
+        </p>
+        <pre class="brush: python">
+chars[char] = ind
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Jak policzyć aktualną długość unikalnego podciągu?
+    </div>
+    <div class="answer">
+        <p>
+            Tak, ma Pan zapisaną wartość <b class="code">res</b> i ma Pan aktualny indeks i wartość początkową (początek podciągu z unikalnymi znakami). Proszę znaleźć różnicę między indeksem a początkiem i zaktualizować <b class="code">res</b> o maksymalną wartość.
+        </p>
+        <pre class="brush: python">
+res = max(res, ind - start + 1)
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Jak więc powinno wyglądać moje ostateczne rozwiązanie?
+    </div>
+    <div class="answer">
+        <p>
+            Wystarczy połączyć wszystkie poprzednie podpowiedzi, zwrócić końcowy wynik i zawinąć kod w wyrażenie funkcyjne. Używanie podpowiedzi typu dla danych wejściowych i wyjściowych jest wysoce zalecane.
+        </p>
+        <p>Oto całe rozwiązanie:</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def longest_substr(s: str) -> int:
+
+    start = res = 0
+    chars = {}
+    for ind, char in enumerate(s):
+        if char in chars:
+            start = max(start, chars[char] + 1)
+        chars[char] = ind
+        res = max(res, ind - start + 1)
+
+    return res
+        </pre>
+        </div>
+        <p>Proszę kliknąć <b>Best Solutions</b> w menu misji i zobaczyć wiele innych ciekawych rozwiązań!</p>
+    </div>
+</div>
+<!-- <div class="question-answer">
+    <div class="question">
+        Show me more solutions!<br />
+        'Cause I wanna be a real 🥇 Python Ninnjaa!
+    </div>
+    <div class="answer">
+        <p>Sure, grab it!</p>
+        <p>
+            
+        </p>
+        <div class="spoiler">
+        <pre class="brush: python">
+
+        </pre>
+        </div>
+        <p>
+            
+        </p>
+        <div class="spoiler">
+        <pre class="brush: python">
+
+        </pre>
+        </div>
+        <p>Click <b>Best Solutions</b> at mission menu and see a lot of other interesting solutions!</p>
+    </div>
+</div> -->
+<div class="question-answer">
+    <div class="question">
+        Dzięki! Teraz wiem i rozumiem więcej! Wszystko działa jak należy!
+    </div>
+    <div class="answer">
+        Miło mi to słyszeć 👍!
+    </div>
+</div>
+</body>
