@@ -1,0 +1,140 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        我不知道如何开始解决这个任务。
+    </div>
+    <div class="answer">
+        <p>
+            给你个主意💡！在变量中存储子串的当前起始位置和最长长度。创建一个字典，存储每个字符的最新索引。遍历给定字符串，必要时更新起始位置（当前字符上一次出现后的下一个索引），并计算唯一字符的长度。
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        好吧，我应该从哪里开始？
+    </div>
+    <div class="answer">
+        <p>
+            为子串的起点、最长长度声明一个变量，为字符声明一个字典。
+        </p>
+        <pre class="brush: python">
+start = res = 0
+chars = {}
+        </pre>
+        <p>
+            使用<a target="_blank" href="https://www.w3schools.com/python/ref_func_enumerate.asp">enumerate()</a> 函数遍历给定字符串的索引和字符。
+        </p>
+        <pre class="brush: python">
+for ind, char in enumerate(s):
+    ...
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        下一步做什么？
+    </div>
+    <div class="answer">
+        <p>
+            首先，需要检查当前字符是否存在于字典中（在给定字符串中已经出现过）。
+        </p>
+        <pre class="brush: python">
+if char in chars:
+    ...
+        </pre>
+        <p>
+            如果是，则需要更新<b class="code">start</b> 位置，使其成为当前值和索引的最大值，并紧跟在当前字符的前一次出现之后。
+        </p>
+        <pre class="brush: python">
+start = max(start, chars[char] + 1)
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        我还需要提示。
+    </div>
+    <div class="answer">
+        <p>
+            现在，您需要在字典中设置（更新）当前字符的最新索引。
+        </p>
+        <pre class="brush: python">
+chars[char] = ind
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        如何计算唯一子串的当前长度？
+    </div>
+    <div class="answer">
+        <p>
+            是的，您有存储值<b class="code">res</b> 以及当前索引和起始值（具有唯一字符的子串的起始值）。找出索引和起始值的差值，然后用最大值更新<b class="code">res</b> 。
+        </p>
+        <pre class="brush: python">
+res = max(res, ind - start + 1)
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        那么，我的最终解决方案应该是怎样的呢？
+    </div>
+    <div class="answer">
+        <p>
+            您只需将之前的所有提示连接起来，返回最终结果，并将代码封装成函数表达式。强烈建议对输入和输出数据使用类型提示。
+        </p>
+        <p>下面是整个解决方案：</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def longest_substr(s: str) -> int:
+
+    start = res = 0
+    chars = {}
+    for ind, char in enumerate(s):
+        if char in chars:
+            start = max(start, chars[char] + 1)
+        chars[char] = ind
+        res = max(res, ind - start + 1)
+
+    return res
+        </pre>
+        </div>
+        <p>点击任务菜单<b>Best Solutions</b> ，查看更多有趣的解决方案！</p>
+    </div>
+</div>
+<!-- <div class="question-answer">
+    <div class="question">
+        Show me more solutions!<br />
+        'Cause I wanna be a real 🥇 Python Ninnjaa!
+    </div>
+    <div class="answer">
+        <p>Sure, grab it!</p>
+        <p>
+            
+        </p>
+        <div class="spoiler">
+        <pre class="brush: python">
+
+        </pre>
+        </div>
+        <p>
+            
+        </p>
+        <div class="spoiler">
+        <pre class="brush: python">
+
+        </pre>
+        </div>
+        <p>Click <b>Best Solutions</b> at mission menu and see a lot of other interesting solutions!</p>
+    </div>
+</div> -->
+<div class="question-answer">
+    <div class="question">
+        谢谢！我现在知道并理解得更多了！一切正常！
+    </div>
+    <div class="answer">
+        很高兴听到这个消息 👍！
+    </div>
+</div>
+</body>
