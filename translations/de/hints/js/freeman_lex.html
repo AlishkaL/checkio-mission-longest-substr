@@ -1,0 +1,154 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        Ich habe keine Ahnung, wie ich mit der Lösung dieser Aufgabe beginnen soll.
+    </div>
+    <div class="answer">
+        <p>
+            Haben Sie eine Idee 💡! Speichern Sie den aktuellen Anfang der Teilzeichenkette und die längste Länge in Variablen. Erstellen Sie eine Map, um den letzten Index jedes Zeichens zu speichern. Iterieren Sie über die angegebene Zeichenkette, aktualisieren Sie gegebenenfalls die Startposition (nächster Index nach dem letzten Vorkommen des aktuellen Zeichens) und berechnen Sie die Länge der einzelnen Zeichen.
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Ok, womit soll ich beginnen?
+    </div>
+    <div class="answer">
+        <p>
+            Deklarieren Sie eine Variable für den Beginn der Teilzeichenkette, die längste Länge und eine Map für die Zeichen.
+        </p>
+        <pre class="brush: javascript">
+let start = 0, maxLength = 0;
+const charMap = new Map();
+        </pre>
+        <p>
+            Iterieren Sie über die Indizes der angegebenen Zeichenkette mit der Schleife <a target="_blank" href="https://www.w3schools.com/js/js_loop_for.asp">for</a>.
+        </p>
+        <pre class="brush: javascript">
+for (let end = 0; end < s.length; end++) {
+    ...
+}
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Was ist als nächstes zu tun?
+    </div>
+    <div class="answer">
+        <p>
+            Zunächst einmal müssen Sie prüfen, ob das aktuelle Zeichen in der Karte vorhanden ist (es wurde bereits zuvor an der angegebenen Zeichenkette getroffen).
+        </p>
+        <pre class="brush: javascript">
+if (charMap.has(s[end])) {
+    ...
+}
+        </pre>
+        <p>
+            Wenn dies der Fall ist, müssen Sie die Position <b class="code">start</b> so aktualisieren, dass sie das Maximum des aktuellen Wertes und den Index direkt nach dem vorherigen Vorkommen des aktuellen Zeichens ist.
+        </p>
+        <pre class="brush: javascript">
+start = Math.max(start, charMap.get(s[end]) + 1);
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Ich brauche noch einen Hinweis.
+    </div>
+    <div class="answer">
+        <p>
+            Jetzt müssen Sie den letzten Index des aktuellen Charakters auf der Karte setzen (aktualisieren).
+        </p>
+        <pre class="brush: javascript">
+charMap.set(s[end], end);
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Wie kann man die aktuelle Länge der eindeutigen Teilzeichenkette zählen?
+    </div>
+    <div class="answer">
+        <p>
+            Ja, Sie haben den gespeicherten Wert <b class="code">maxLength</b> und Sie haben den aktuellen Index und den Startwert (den Anfang der Teilzeichenkette mit eindeutigen Zeichen). Ermitteln Sie die Differenz zwischen Index und Startwert und aktualisieren Sie <b class="code">maxLength</b> mit dem Maximalwert.
+        </p>
+        <pre class="brush: javascript">
+maxLength = Math.max(maxLength, end - start + 1);
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Wie sollte also meine endgültige Lösung aussehen?
+    </div>
+    <div class="answer">
+        <p>
+            Sie müssen nur alle vorherigen Hinweise verbinden, das Endergebnis zurückgeben und Ihren Code in einen Funktionsausdruck verpacken. Die Verwendung von Typ-Hinweisen für Eingabe- und Ausgabedaten wird dringend empfohlen.
+        </p>
+        <p>Hier ist die gesamte Lösung:</p>
+        <div class="spoiler">
+        <pre class="brush: javascript">
+function longestSubstr(s: string): number {
+
+    let start = 0, maxLength = 0;
+    const charMap = new Map();
+
+    for (let end = 0; end < s.length; end++) {
+        if (charMap.has(s[end])) {
+            start = Math.max(start, charMap.get(s[end]) + 1);
+        }
+        charMap.set(s[end], end);
+        maxLength = Math.max(maxLength, end - start + 1);
+    }
+    return maxLength;
+}
+        </pre>
+        </div>
+        <p>Klicken Sie auf <b>Best Solutions</b> im Menü Mission und sehen Sie sich viele andere interessante Lösungen an!</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Zeigen Sie mir mehr Lösungen!<br />
+        denn ich möchte ein echter 🥇 Javascript-Held sein!
+    </div>
+    <div class="answer">
+        <p>Klar, greifen Sie zu!</p>
+        <p>
+            Speichern Sie eindeutige Zeichen in einer Menge, verschieben Sie den Startindex, wenn sich ein Zeichen wiederholt, ansonsten den linken Index.
+        </p>
+        <div class="spoiler">
+        <pre class="brush: javascript">
+function longestSubstr(s: string): number {
+
+    const charSet = new Set();
+    let left = 0, right = 0, maxLength = 0;
+
+    while (right < s.length) {
+        if (!charSet.has(s[right])) {
+            charSet.add(s[right]);
+            maxLength = Math.max(maxLength, right - left + 1);
+            right++;
+        } else {
+            charSet.delete(s[left]);
+            left++;
+        }
+    }
+
+    return maxLength;
+}
+        </pre>
+        </div>
+        <p>Klicken Sie im Missionsmenü auf <b>Best Solutions</b> und sehen Sie sich viele andere interessante Lösungen an!</p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Vielen Dank! Ich weiß und verstehe jetzt mehr! Alles funktioniert bestens!
+    </div>
+    <div class="answer">
+        Freut mich zu hören 👍!
+    </div>
+</div>
+</body>
