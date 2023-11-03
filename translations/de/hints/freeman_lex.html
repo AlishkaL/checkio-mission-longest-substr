@@ -1,0 +1,140 @@
+<body data-author="freeman_lex">
+<div class="question-answer">
+    <div class="question">
+        Ich habe keine Ahnung, wie ich mit der Lösung dieser Aufgabe beginnen soll.
+    </div>
+    <div class="answer">
+        <p>
+            Haben Sie eine Idee 💡! Speichern Sie den aktuellen Anfang der Teilzeichenkette und die längste Länge in Variablen. Erstellen Sie ein Wörterbuch, um den letzten Index jedes Zeichens zu speichern. Iterieren Sie über die angegebene Zeichenkette, aktualisieren Sie gegebenenfalls die Startposition (nächster Index nach dem letzten Vorkommen des aktuellen Zeichens) und berechnen Sie die Länge der einzelnen Zeichen.
+        </p>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Ok, womit soll ich beginnen?
+    </div>
+    <div class="answer">
+        <p>
+            Deklarieren Sie eine Variable für den Anfang der Teilzeichenkette, die längste Länge und ein Wörterbuch für die Zeichen.
+        </p>
+        <pre class="brush: python">
+start = res = 0
+chars = {}
+        </pre>
+        <p>
+            Iterieren Sie über die Indizes und Zeichen der angegebenen Zeichenkette mit der Funktion <a target="_blank" href="https://www.w3schools.com/python/ref_func_enumerate.asp">enumerate()</a>.
+        </p>
+        <pre class="brush: python">
+for ind, char in enumerate(s):
+    ...
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Was ist als nächstes zu tun?
+    </div>
+    <div class="answer">
+        <p>
+            Zunächst müssen Sie prüfen, ob das aktuelle Zeichen im Wörterbuch vorhanden ist (es wurde bereits zuvor in der angegebenen Zeichenfolge gefunden).
+        </p>
+        <pre class="brush: python">
+if char in chars:
+    ...
+        </pre>
+        <p>
+            Wenn dies der Fall ist, müssen Sie die Position <b class="code">start</b> so aktualisieren, dass sie das Maximum des aktuellen Wertes und den Index direkt nach dem vorherigen Vorkommen des aktuellen Zeichens ist.
+        </p>
+        <pre class="brush: python">
+start = max(start, chars[char] + 1)
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Ich brauche noch einen Hinweis.
+    </div>
+    <div class="answer">
+        <p>
+            Jetzt müssen Sie den letzten Index des aktuellen Zeichens im Wörterbuch setzen (aktualisieren).
+        </p>
+        <pre class="brush: python">
+chars[char] = ind
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Wie kann man die aktuelle Länge der eindeutigen Teilzeichenkette zählen?
+    </div>
+    <div class="answer">
+        <p>
+            Ja, Sie haben den gespeicherten Wert <b class="code">res</b> und Sie haben den aktuellen Index und den Startwert (den Anfang der Teilzeichenkette mit eindeutigen Zeichen). Ermitteln Sie die Differenz zwischen Index und Startwert und aktualisieren Sie <b class="code">res</b> mit dem Maximalwert.
+        </p>
+        <pre class="brush: python">
+res = max(res, ind - start + 1)
+        </pre>
+    </div>
+</div>
+<div class="question-answer">
+    <div class="question">
+        Wie sollte also meine endgültige Lösung aussehen?
+    </div>
+    <div class="answer">
+        <p>
+            Sie müssen nur alle vorherigen Hinweise verbinden, das Endergebnis zurückgeben und Ihren Code in einen Funktionsausdruck verpacken. Die Verwendung von Typ-Hinweisen für Eingabe- und Ausgabedaten wird dringend empfohlen.
+        </p>
+        <p>Hier ist die gesamte Lösung:</p>
+        <div class="spoiler">
+        <pre class="brush: python">
+def longest_substr(s: str) -> int:
+
+    start = res = 0
+    chars = {}
+    for ind, char in enumerate(s):
+        if char in chars:
+            start = max(start, chars[char] + 1)
+        chars[char] = ind
+        res = max(res, ind - start + 1)
+
+    return res
+        </pre>
+        </div>
+        <p>Klicken Sie auf <b>Best Solutions</b> im Menü Mission und sehen Sie sich viele andere interessante Lösungen an!</p>
+    </div>
+</div>
+<!-- <div class="question-answer">
+    <div class="question">
+        Show me more solutions!<br />
+        'Cause I wanna be a real 🥇 Python Ninnjaa!
+    </div>
+    <div class="answer">
+        <p>Sure, grab it!</p>
+        <p>
+            
+        </p>
+        <div class="spoiler">
+        <pre class="brush: python">
+
+        </pre>
+        </div>
+        <p>
+            
+        </p>
+        <div class="spoiler">
+        <pre class="brush: python">
+
+        </pre>
+        </div>
+        <p>Click <b>Best Solutions</b> at mission menu and see a lot of other interesting solutions!</p>
+    </div>
+</div> -->
+<div class="question-answer">
+    <div class="question">
+        Vielen Dank! Ich weiß und verstehe jetzt mehr! Alles funktioniert einwandfrei!
+    </div>
+    <div class="answer">
+        Freut mich zu hören 👍!
+    </div>
+</div>
+</body>
